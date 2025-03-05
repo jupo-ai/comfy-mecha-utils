@@ -3,16 +3,10 @@ from .block_presets import PRESET_MAPPING
 from .utils import _name
 
 # 非対象コンポーネントのリストを取得
-# 順番はsd_mecha.defaultで得られる順番
 def get_non_target_components(arch_id: str, target_component: str):
-    default = sd_mecha.default(arch_id)
-    default_keys = list(default.keys())
-    
-    # arch_component_defaultの形からcomponentのみ
-    default_keys = [key.replace(f"{arch_id}_", "").replace("_default", "") for key in default_keys]
-
-    # target_component ではないもののみ抽出
-    non_targets = [cmp for cmp in default_keys if cmp != target_component]
+    arch = sd_mecha.extensions.model_arch.resolve(arch_id)
+    non_targets = [cmp for cmp in arch.components if cmp != target_component]
+    non_targets = sorted(non_targets)
     return non_targets
 
 # プリセット名のリストを取得
