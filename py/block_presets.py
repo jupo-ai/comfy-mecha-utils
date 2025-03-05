@@ -41,7 +41,7 @@ def quadratic(x):
 
 
 def grad_v(x):
-    y = 1 - 2 * abs(x - 0.5)
+    y = 2 * abs(x - 0.5)
     return y
 
 
