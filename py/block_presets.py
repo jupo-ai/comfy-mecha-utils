@@ -128,5 +128,8 @@ PRESET_MAPPING = {
     "SMOOTHSTEP_d4_inverse": lambda x: __inverse(lambda x: smoothstep_div(x, q=4), x), 
     "CUBIC_HERMITE": cubic_hermite, 
     "CUBIC_HERMITE_inverse": lambda x: __inverse(cubic_hermite, x), 
-    "WAVE": wave, 
+    "WAVE_p0": lambda x: wave(x, k=1, p=0/4),
+    "WAVE_p1": lambda x: wave(x, k=1, p=1/4), 
+    "WAVE_p2": lambda x: wave(x, k=1, p=2/4), 
+    "WAVE_p3": lambda x: wave(x, k=1, p=3/4),  
 }

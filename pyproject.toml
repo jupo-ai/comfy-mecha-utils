@@ -1,7 +1,7 @@
 [project]
 name = "comfy-mecha-utils"
 description = "util nodes for custom node 'comfy-mecha'"
-version = "1.0.0"
+version = "1.0.1"
 license = {file = "LICENSE"}
 dependencies = ["sd-mecha>=0.0.29"]
 
