@@ -4,10 +4,10 @@ import { debug, _name, _endpoint } from "./utils.js";
 
 function make_preset_extension(preset) {
     return {
-        name: _name(`Exp${preset.replace("_", "")}Slider`), 
+        name: _name(`BlocksSDXLUnet${preset.replace("_", "")}Slider`), 
 
         beforeRegisterNodeDef: function(nodeType, nodeData, app) {
-            if (nodeType.comfyClass === _name(`[Experimental]_${preset}_Slider`)) {
+            if (nodeType.comfyClass === _name(`Blocks_SDXL_UNET_${preset}_Slider`)) {
 
                 const __onAdded = nodeType.prototype.onAdded;
                 nodeType.prototype.onAdded = function() {

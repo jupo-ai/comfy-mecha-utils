@@ -59,8 +59,10 @@ const extension = {
 
                 values.forEach((v, i) => {
                     const slider = this.sliders[i]
-                    slider.value = v;
-                    slider?.callback(v);
+                    if (v !== null) {
+                        slider.value = v;
+                        slider?.callback(v);
+                    }
                 });
                 
                 this.setDirtyCanvas(true, false);

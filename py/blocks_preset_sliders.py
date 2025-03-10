@@ -16,17 +16,16 @@ class WavePresetSlider:
             "required": required
         }
     
-    RETURN_TYPES = ("STRING", )
-    RETURN_NAMES = ("text", )
+    RETURN_TYPES = ("MECHA_HYPER", "STRING", )
+    RETURN_NAMES = ("hyper", "text", )
     FUNCTION = "execute"
     CATEGORY = "advanced/model_merging/mecha/blocks/experimental"
     
     def execute(self, **kwargs):
         blocks = block_sliders.get_target_blocks("sdxl", "unet")
-        values = tuple(v for k, v in kwargs.items() if k in blocks)
-
-        text = ",".join(map(str, values))
-        return (text, )
+        hyper = {k: v for k, v in kwargs.items() if k in blocks}
+        text = ",".join(map(str, hyper.values()))
+        return (hyper, text, )
 
 
 class CubicHermitePresetSlider:
@@ -44,23 +43,22 @@ class CubicHermitePresetSlider:
             "required": required
         }
     
-    RETURN_TYPES = ("STRING", )
-    RETURN_NAMES = ("text", )
+    RETURN_TYPES = ("MECHA_HYPER", "STRING", )
+    RETURN_NAMES = ("hyper", "text", )
     FUNCTION = "execute"
     CATEGORY = "advanced/model_merging/mecha/blocks/experimental"
     
     def execute(self, **kwargs):
         blocks = block_sliders.get_target_blocks("sdxl", "unet")
-        values = tuple(v for k, v in kwargs.items() if k in blocks)
-
-        text = ",".join(map(str, values))
-        return (text, )
+        hyper = {k: v for k, v in kwargs.items() if k in blocks}
+        text = ",".join(map(str, hyper.values()))
+        return (hyper, text, )
 
 
 
 NODE_CLASS_MAPPINGS = {
-    _name("[Experimental]_Wave_Slider"): WavePresetSlider, 
-    _name("[Experimental]_Cubic_Hermite_Slider"): CubicHermitePresetSlider, 
+    _name("Blocks_SDXL_UNET_Wave_Slider"): WavePresetSlider, 
+    _name("Blocks_SDXL_UNET_Cubic_Hermite_Slider"): CubicHermitePresetSlider, 
 }
     
     
