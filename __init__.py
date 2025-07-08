@@ -48,25 +48,3 @@ async def block_sliders_preset_on_changed(req: web.Request):
     return web.Response(body=body)
 
 
-
-# -------------------------------------
-# exp preset slider
-@routes.post(_endpoint("exp_preset_slider"))
-async def exp_wave_preset(req: web.Request):
-    data = await req.json()
-    preset = data.get("preset")
-    num = data.get("num")
-    kwargs = data.get("kwargs")
-    
-    from .py import block_presets
-    func = getattr(block_presets, preset)
-    
-    res = []
-    for a in range(num):
-        x = a / (num - 1)
-        y = func(x, **kwargs)
-        res.append(y)
-    
-    body = json.dumps(res)
-    return web.Response(body=body)
-    
