@@ -61,7 +61,7 @@ class Sd1BlocksSdlier:
                 if isinstance(v, float):
                     kwargs[k] = round(v, 2)
         
-        slider_dict = {k:v for k, v in kwargs.items() if isinstance(v, float)}
+        slider_dict = {k:v for k, v in kwargs.items() if k not in ["round", "preset"]}
         blocks = sd_mecha.literal(slider_dict, "sd1-supermerger_blocks")
         blocks = sd_mecha.convert(blocks, "sd1-ldm")
         
@@ -100,7 +100,7 @@ class SdxlBlocksSdlier:
                 if isinstance(v, float):
                     kwargs[k] = round(v, 2)
         
-        slider_dict = {k:v for k, v in kwargs.items() if isinstance(v, float)}
+        slider_dict = {k:v for k, v in kwargs.items() if k not in ["round", "preset"]}
         blocks = sd_mecha.literal(slider_dict, "sdxl-supermerger_blocks")
         blocks = sd_mecha.convert(blocks, "sdxl-sgm")
         
