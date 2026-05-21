@@ -1,18 +1,50 @@
-def log(message: str):
-    print(f"[mecha-utils] {message}")
+from functools import wraps
+from server import PromptServer
+from pathlib import Path
+
+AUTHOR = "jupo"
+ROOT_DIR = Path(__file__).parent.parent
+
+def mk_name(*args):
+    parts = [AUTHOR] + list(args)
+    return ".".join(parts)
+
+def mk_category(*args):
+    parts = [AUTHOR] + list(args)
+    return "/".join(parts)
 
 
-author = "jupo"
-packageName = "mechaUtils"
-
-def _name(name: str):
-    return f"{author}.{packageName}.{name}"
-
-def _dname(name: str):
-    return name.replace(f"{author}.", "").replace(f"{packageName}.", "").replace("_", " ")
-
-
-def _endpoint(part: str):
-    return f"/{author}/{packageName}/{part}"
+class Endpoint:
+    routes = PromptServer.instance.routes
+    
+    @classmethod
+    def _endpoint(cls, *args):
+        parts = [AUTHOR] + list(args)
+        path = "/".join(parts)
+        return f"/{path}"
+    
+    @classmethod
+    def get(cls, *args):
+        """GETリクエスト用デコレータ"""
+        def decorator(func):
+            @wraps(func)
+            def wrapper(*args, **kwargs):
+                return func(*args, **kwargs)
+            
+            cls.routes.get(cls._endpoint(*args))(wrapper)
+            return wrapper
+        return decorator
+    
+    @classmethod
+    def post(cls, *args):
+        """POSTリクエスト用デコレータ"""
+        def decorator(func):
+            @wraps(func)
+            def wrapper(*args, **kwargs):
+                return func(*args, **kwargs)
+            
+            cls.routes.post(cls._endpoint(*args))(wrapper)
+            return wrapper
+        return decorator
 
 

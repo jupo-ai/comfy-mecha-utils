@@ -1,0 +1,118 @@
+.mecha-blocks-field {
+    --bg-default: rgb(45, 55, 71);
+    --border-default: rgb(69 69 69);
+    --accent-color: rgb(0 122 204);
+    --accent-hover: rgb(56 154 219);
+    --text-primary: rgb(255 255 255 / 0.85);
+    --text-secondary: rgb(255 255 255 / 0.65);
+    --font-family: "Segoe UI", system-ui, sans-serif;
+    --gap-in-widget: 6px;
+    --padding-in-widget: 4px 6px;
+    --header-height: 28px;
+    --footer-button-padding: 4px 14px;
+
+    display: block;
+    user-select: none;
+    color: var(--text-primary);
+    font-family: var(--font-family);
+}
+
+.mecha-blocks-field-container {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+body.mecha-blocks-body-grabbing {
+    cursor: grabbing;
+}
+
+body.mecha-blocks-body-grabbing .mecha-blocks-field * {
+    pointer-events: none;
+}
+
+.mecha-blocks-header {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+
+    height: var(--header-height);
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--gap-in-widget);
+
+    padding: var(--padding-in-widget);
+}
+
+.mecha-blocks-header-drag {
+    width: 16px;
+    flex: 0 0 16px;
+}
+
+.mecha-blocks-header-toggle {
+    width: 32px;
+    flex: 0 0 32px;
+}
+
+.mecha-blocks-header-flex {
+    flex: 1;
+    min-width: 0;
+}
+
+.mecha-blocks-header-type {
+    width: 64px;
+    flex: 0 0 64px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.mecha-blocks-header-delete {
+    width: 24px;
+    flex: 0 0 24px;
+}
+
+.mecha-blocks-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 10px;
+}
+
+.mecha-blocks-add-button {
+    min-width: 72px;
+    width: auto;
+    padding: var(--footer-button-padding);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(90, 164, 255, 0.36);
+    border-radius: 6px;
+    background: rgba(0, 122, 204, 0.68);
+    box-shadow: none;
+    color: var(--text-primary);
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.03rem;
+    line-height: 1.1;
+    text-align: center;
+    transition: background-color 0.1s, border-color 0.1s, transform 0.1s;
+}
+
+.mecha-blocks-add-button:hover {
+    border-color: rgba(120, 188, 255, 0.58);
+    background: rgba(56, 154, 219, 0.82);
+}
+
+.mecha-blocks-add-button:active {
+    transform: translateY(1px);
+}

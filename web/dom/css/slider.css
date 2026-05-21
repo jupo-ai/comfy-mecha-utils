@@ -1,0 +1,95 @@
+.mecha-slider {
+    --sl-font-family: var(--font-family, "Segoe UI", sans-serif);
+    --sl-label-color: var(--text-secondary, rgba(255, 255, 255, 0.65));
+    --sl-track-bg: rgba(0, 0, 0, 0.4);
+    --sl-track-height: 6px;
+    --sl-thumb-color: var(--text-primary, #ddd);
+    --sl-thumb-size: 14px;
+    --sl-fill-color: var(--input-border-focus, rgb(78, 164, 255));
+
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: var(--sl-font-family);
+}
+
+.mecha-slider-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.mecha-slider-label {
+    overflow: hidden;
+    color: var(--sl-label-color);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.04rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    user-select: none;
+}
+
+.mecha-slider-range {
+    width: 100%;
+    margin: 0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 99px;
+    appearance: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.mecha-slider-range:focus {
+    outline: none;
+}
+
+.mecha-slider-range::-webkit-slider-runnable-track {
+    width: 100%;
+    height: var(--sl-track-height);
+    border-radius: 99px;
+    background: linear-gradient(to right, var(--sl-fill-color) var(--percent), var(--sl-track-bg) var(--percent));
+    cursor: pointer;
+}
+
+.mecha-slider-range::-webkit-slider-thumb {
+    width: var(--sl-thumb-size);
+    height: var(--sl-thumb-size);
+    margin-top: calc((var(--sl-track-height) / 2) - (var(--sl-thumb-size) / 2) - 1px);
+    border: none;
+    border-radius: 50%;
+    appearance: none;
+    background: var(--sl-thumb-color);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    transition: transform 0.1s, background-color 0.2s;
+}
+
+.mecha-slider-range:hover::-webkit-slider-thumb {
+    background: #fff;
+    transform: scale(1.1);
+}
+
+.mecha-slider-range:active::-webkit-slider-thumb {
+    background: var(--sl-fill-color);
+    transform: scale(1.2);
+}
+
+.mecha-slider-range::-moz-range-track {
+    width: 100%;
+    height: var(--sl-track-height);
+    border-radius: 99px;
+    background: linear-gradient(to right, var(--sl-fill-color) var(--percent), var(--sl-track-bg) var(--percent));
+    cursor: pointer;
+}
+
+.mecha-slider-range::-moz-range-thumb {
+    width: var(--sl-thumb-size);
+    height: var(--sl-thumb-size);
+    border: none;
+    border-radius: 50%;
+    background: var(--sl-thumb-color);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+}
