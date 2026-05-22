@@ -83,7 +83,14 @@ Diffusion Model と同じく、対象フォルダを `text_encoders` に限定�
 
 この拡張は `anima-comfyui` model_config を sd-mecha に登録します。
 
-Anima用のdiffusion modelキーを登録しており、`Mecha Utils Blocks` の `Anima` ModelType から使用できます。
+Anima用のdiffusion modelキーを登録しています。
+
+
+## Sample
+
+接続例
+
+![Sample](assets/sample.png)
 
 ## Notes
 
