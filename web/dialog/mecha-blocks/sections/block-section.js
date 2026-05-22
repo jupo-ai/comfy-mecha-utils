@@ -12,6 +12,14 @@ export class BlockSection {
         this.element = $el("div.mecha-block-section");
     }
 
+    getSearchKeys(info) {
+        return Array.isArray(info[0]) ? info[0] : [info[0]];
+    }
+
+    getLabelTitle(info) {
+        return this.getSearchKeys(info).map((key) => `${key}*`).join("\n");
+    }
+
     createSliders() {
         this.clear();
         const config = this.parent.getCurrentBlockConfig();
@@ -29,7 +37,7 @@ export class BlockSection {
             for (const info of config[position]) {
                 const slider = new Slider({
                     label: info[1],
-                    labelTitle: info[3] ?? info[0],
+                    labelTitle: this.getLabelTitle(info),
                     value: options.value,
                     min: options.min,
                     max: options.max,
@@ -50,7 +58,7 @@ export class BlockSection {
     }
 
     applyValue(key, value) {
-        const item = this.sliders.find((sliderItem) => sliderItem.info[0] === key);
+        const item = this.sliders.find((sliderItem) => this.getSearchKeys(sliderItem.info).includes(key));
         if (!item) return;
 
         item.slider.value = value;
@@ -59,8 +67,10 @@ export class BlockSection {
     getValue() {
         const value = { model: {}, clip: {} };
         for (const { info, slider } of this.sliders) {
-            const [key, , type] = info;
-            value[type][key] = slider.value;
+            const [, , type] = info;
+            this.getSearchKeys(info).forEach((key) => {
+                value[type][key] = slider.value;
+            });
         }
         return value;
     }
@@ -69,8 +79,10 @@ export class BlockSection {
         if (!blocks) return;
 
         for (const { info, slider } of this.sliders) {
-            const [key, , type] = info;
-            const value = blocks?.[type]?.[key];
+            const [, , type] = info;
+            const value = this.getSearchKeys(info)
+                .map((key) => blocks?.[type]?.[key])
+                .find((blockValue) => blockValue !== undefined);
             if (value !== undefined) {
                 slider.value = value;
             }

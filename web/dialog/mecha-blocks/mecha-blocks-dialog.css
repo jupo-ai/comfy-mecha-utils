@@ -115,6 +115,10 @@
     gap: 16px;
 }
 
+.mecha-block-section-slider {
+    width: 100%;
+}
+
 .mecha-block-section-sliders {
     display: flex;
     flex-direction: column;

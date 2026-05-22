@@ -1,4 +1,4 @@
-from ...utils import mk_category
+from ...jupo_utils import mk_category
 from comfy_api.latest import io
 
 PACKAGE_NAME = "MechaUtils"

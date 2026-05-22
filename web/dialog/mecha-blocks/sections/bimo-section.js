@@ -57,8 +57,10 @@ export class BimoSection {
 
                 for (let i = 0; i < itemsForThisChar; i++) {
                     if (currentIndex >= items.length) return;
-                    const key = items[currentIndex][0];
-                    mapping[key] = value;
+                    const keys = this.parent.blockSection.getSearchKeys(items[currentIndex]);
+                    keys.forEach((key) => {
+                        mapping[key] = value;
+                    });
                     currentIndex++;
                 }
             });

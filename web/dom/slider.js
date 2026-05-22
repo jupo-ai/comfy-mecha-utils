@@ -67,6 +67,7 @@ export class Slider {
         });
         header.append(label, this.numberInput.element);
 
+        const body = $el("div.mecha-slider-body");
         this.rangeInput = $el("input.mecha-slider-range", {
             type: "range",
             min: this.min,
@@ -76,8 +77,10 @@ export class Slider {
                 this.value = this.rangeInput.value;
             },
         });
+        this.rangeInput.addEventListener("dragstart", (event) => event.preventDefault());
+        body.append(this.rangeInput);
 
-        this.element.append(header, this.rangeInput);
+        this.element.append(header, body);
     }
 
     updateProgress() {
