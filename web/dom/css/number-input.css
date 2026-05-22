@@ -1,0 +1,106 @@
+.mecha-number-input {
+    --ni-font-family: var(--font-family, "Segoe UI", sans-serif);
+    --ni-radius: 4px;
+    --ni-bg: var(--input-bg, rgba(0, 0, 0, 0.35));
+    --ni-border: 1px solid var(--input-border, rgba(255, 255, 255, 0.1));
+    --ni-bg-active: var(--input-bg-focus, rgba(78, 164, 255, 0.1));
+    --ni-border-active: 1px solid var(--input-border-focus, rgb(78, 164, 255));
+    --ni-accent-color: var(--input-border-focus, rgb(78, 164, 255));
+    --ni-text: var(--text-primary, rgba(255, 255, 255, 0.85));
+    --ni-btn-hover-bg: rgba(255, 255, 255, 0.1);
+    --ni-btn-active-bg: rgba(255, 255, 255, 0.2);
+    --ni-icon-opacity: 0.6;
+
+    display: inline-flex;
+    align-items: center;
+    width: var(--width, 100px);
+    height: var(--height, 30px);
+    box-sizing: border-box;
+    overflow: hidden;
+    border: var(--ni-border);
+    border-radius: var(--ni-radius);
+    background-color: var(--ni-bg);
+    color: var(--ni-text);
+    font-family: var(--ni-font-family);
+    font-size: var(--font-size, 13px);
+    user-select: none;
+    transition: background-color 0.2s, border-color 0.2s;
+    vertical-align: middle;
+}
+
+.mecha-number-input:hover {
+    border-color: rgba(255, 255, 255, 0.3);
+    background-color: var(--ni-bg-active);
+}
+
+.mecha-number-input.is-number-dragging {
+    border: var(--ni-border-active);
+    background-color: var(--ni-bg-active);
+    cursor: ew-resize;
+}
+
+.mecha-number-input-button {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 16px;
+    height: 100%;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    transition: background-color 0.1s;
+}
+
+.mecha-number-input-button::after {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    content: "";
+    opacity: var(--ni-icon-opacity);
+    transition: opacity 0.2s;
+}
+
+.mecha-number-input-button:first-child::after {
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cline x1='5' y1='12' x2='19' y2='12'%3e%3c/line%3e%3c/svg%3e");
+}
+
+.mecha-number-input-button:last-child::after {
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cline x1='12' y1='5' x2='12' y2='19'%3e%3c/line%3e%3cline x1='5' y1='12' x2='19' y2='12'%3e%3c/line%3e%3c/svg%3e");
+}
+
+.mecha-number-input:not(.is-number-dragging) .mecha-number-input-button:hover {
+    background-color: var(--ni-btn-hover-bg);
+}
+
+.mecha-number-input:not(.is-number-dragging) .mecha-number-input-button:hover::after {
+    opacity: 1;
+}
+
+.mecha-number-input-button:active {
+    background-color: var(--ni-btn-active-bg);
+}
+
+.mecha-number-input-value {
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    min-width: 0;
+    height: 100%;
+    padding: 0 4px 2px 4px;
+    color: var(--ni-text);
+    cursor: ew-resize;
+    line-height: 1;
+}
+
+.mecha-number-input.is-number-dragging .mecha-number-input-value {
+    color: var(--ni-accent-color);
+    font-weight: 600;
+}

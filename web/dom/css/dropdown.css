@@ -1,0 +1,149 @@
+.mecha-dropdown-container {
+    --dd-font-family: var(--font-family, "Segoe UI", sans-serif);
+    --dd-radius: 4px;
+    --dd-bg: var(--input-bg, rgba(0, 0, 0, 0.35));
+    --dd-border: 1px solid var(--input-border, rgba(255, 255, 255, 0.1));
+    --dd-bg-active: var(--input-bg-focus, rgba(78, 164, 255, 0.1));
+    --dd-border-active: 1px solid var(--input-border-focus, rgb(78, 164, 255));
+    --dd-text-main: var(--text-primary, rgba(255, 255, 255, 0.85));
+    --dd-text-placeholder: var(--text-secondary, rgba(255, 255, 255, 0.65));
+    --dd-list-bg: var(--dialog-bg-secondary, rgb(45, 55, 71));
+    --dd-list-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    --dd-item-hover: var(--list-hover, rgba(255, 255, 255, 0.15));
+    --dd-item-selected-bg: var(--list-active, rgba(4, 124, 204, 0.35));
+    --dd-transition: 0.2s ease;
+    --dd-anim-popup: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+    position: relative;
+    z-index: 10;
+    display: inline-block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0;
+    border: var(--dd-border);
+    border-radius: var(--dd-radius);
+    background-color: var(--dd-bg);
+    cursor: pointer;
+    font-family: var(--dd-font-family);
+    font-size: 14px;
+    text-align: left;
+    transition: background-color var(--dd-transition), border-color var(--dd-transition);
+}
+
+.mecha-dropdown-container:hover {
+    border-color: rgba(255, 255, 255, 0.3);
+    background-color: var(--dd-bg-active);
+}
+
+.mecha-dropdown-container.active {
+    border: var(--dd-border-active);
+    background-color: var(--dd-bg-active);
+}
+
+.mecha-dropdown-placeholder {
+    display: flex;
+    align-items: center;
+    height: 36px;
+    overflow: hidden;
+    padding: 0 32px 0 12px;
+    color: var(--dd-text-placeholder);
+    font-weight: 400;
+    text-overflow: ellipsis;
+    user-select: none;
+    white-space: nowrap;
+}
+
+.mecha-dropdown-container.has-value .mecha-dropdown-placeholder {
+    color: var(--dd-text-main);
+}
+
+.mecha-dropdown-container::after {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    width: 16px;
+    height: 16px;
+    transform: translateY(-50%);
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='rgba(255, 255, 255, 0.6)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-size: contain;
+    content: "";
+    opacity: 0.7;
+    pointer-events: none;
+    transition: transform var(--dd-transition);
+}
+
+.mecha-dropdown-container:hover::after {
+    opacity: 1;
+}
+
+.mecha-dropdown-container.active::after {
+    transform: translateY(-50%) rotateX(180deg);
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='rgb(78, 164, 255)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+}
+
+.mecha-dropdown-list {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    z-index: 100;
+    display: none;
+    width: 100%;
+    max-height: 250px;
+    overflow-y: auto;
+    box-sizing: border-box;
+    border: 1px solid var(--input-border);
+    border-radius: 4px;
+    background-color: var(--dd-list-bg);
+    box-shadow: var(--dd-list-shadow);
+    list-style: none;
+}
+
+.mecha-dropdown-container.active .mecha-dropdown-list {
+    display: block;
+    animation: mechaDropdownFadeInUp 0.25s var(--dd-anim-popup) forwards;
+}
+
+.mecha-dropdown-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 16px;
+    color: var(--dd-text-main);
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.1s;
+}
+
+.mecha-dropdown-item:hover {
+    background-color: var(--dd-item-hover);
+}
+
+.mecha-dropdown-item.selected {
+    background-color: var(--dd-item-selected-bg);
+    color: var(--text-primary, #fff);
+    font-weight: 500;
+}
+
+.mecha-dropdown-item.selected::after {
+    flex-shrink: 0;
+    width: 14px;
+    height: 14px;
+    margin-left: 10px;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='20 6 9 17 4 12'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-size: contain;
+    content: "";
+}
+
+@keyframes mechaDropdownFadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

@@ -1,0 +1,59 @@
+.mecha-toggle {
+    --width: 48px;
+    --height: 26px;
+    --slider-color-off: rgb(69, 69, 69);
+    --slider-color-on: rgb(89, 202, 132);
+    --slider-border: rgba(255, 255, 255, 0.2);
+    --knob-color: rgb(255, 255, 255);
+    --knob-size: calc(var(--height) - 4px);
+    --knob-translate-x: calc(var(--width) - var(--height));
+    --transition-duration: 0.1s;
+
+    position: relative;
+    display: inline-block;
+    flex-shrink: 0;
+    width: var(--width);
+    height: var(--height);
+}
+
+.mecha-toggle-input {
+    width: 0;
+    height: 0;
+    opacity: 0;
+}
+
+.mecha-toggle-slider {
+    position: absolute;
+    inset: 0;
+    border: 1px solid var(--slider-border);
+    border-radius: var(--height);
+    background-color: var(--slider-color-off);
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: background-color var(--transition-duration);
+}
+
+.mecha-toggle-slider::before {
+    position: absolute;
+    left: 1px;
+    bottom: 1px;
+    width: var(--knob-size);
+    height: var(--knob-size);
+    border-radius: 50%;
+    background-color: var(--knob-color);
+    content: "";
+    transition: transform var(--transition-duration);
+}
+
+.mecha-toggle-input:checked + .mecha-toggle-slider {
+    background-color: var(--slider-color-on);
+}
+
+.mecha-toggle-input:checked + .mecha-toggle-slider::before {
+    transform: translateX(var(--knob-translate-x));
+}
+
+.mecha-toggle--disabled,
+.mecha-toggle--disabled .mecha-toggle-slider {
+    cursor: not-allowed;
+}

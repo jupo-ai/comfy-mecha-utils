@@ -1,0 +1,163 @@
+.mecha-blocks-widget {
+    --widget-bg: rgba(20, 24, 32, 0.92);
+    --widget-bg-hover: rgba(28, 34, 44, 0.94);
+    --widget-border: rgba(255, 255, 255, 0.1);
+    --widget-border-hover: rgba(255, 255, 255, 0.2);
+    --widget-active-bg: rgba(38, 54, 74, 0.95);
+    --widget-active-border: rgba(90, 164, 255, 0.72);
+    --text-primary: rgb(255 255 255 / 0.85);
+    --text-secondary: rgb(255 255 255 / 0.65);
+    --accent-color: rgb(100, 181, 246);
+    --danger-color: rgb(239, 83, 80);
+    --dragging-bg: rgb(26, 32, 43);
+    --dragging-border: rgba(4, 124, 204);
+    --widget-height: 34px;
+    --border-radius: 6px;
+    --font-size: 12px;
+    --transition-duration: 0.1s;
+}
+
+.mecha-blocks-widget {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    width: 100%;
+    height: var(--widget-height);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--gap-in-widget, 8px);
+    padding: var(--padding-in-widget, 4px 8px);
+    border: 1px solid var(--widget-border);
+    border-radius: var(--border-radius);
+    background-color: var(--widget-bg);
+    box-sizing: border-box;
+    color: var(--text-primary);
+    font-size: var(--font-size);
+    transition: all var(--transition-duration);
+    user-select: none;
+}
+
+.mecha-blocks-widget:hover {
+    border-color: var(--widget-border-hover);
+    background-color: var(--widget-bg-hover);
+}
+
+.mecha-blocks-widget--active {
+    border-color: var(--widget-active-border);
+    background-color: var(--widget-active-bg);
+}
+
+.mecha-blocks-widget--active:hover {
+    border-color: var(--widget-active-border);
+    background-color: var(--widget-active-bg);
+}
+
+.mecha-blocks-widget--dragging {
+    opacity: 0.5;
+    background-color: var(--dragging-bg);
+    border-color: var(--dragging-border);
+    z-index: 100;
+    transform: scale(1.02);
+}
+
+.mecha-blocks-widget-drag-handle {
+    order: -1;
+    color: var(--text-secondary);
+    opacity: 0.5;
+    pointer-events: auto !important;
+}
+
+.mecha-blocks-widget-drag-handle:hover {
+    cursor: grab;
+    opacity: 1;
+}
+
+.mecha-blocks-widget-name {
+    flex: 1;
+    min-width: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    padding: 4px 8px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--text-primary);
+    cursor: pointer;
+    font: inherit;
+    text-align: left;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    transition: background-color var(--transition-duration), color var(--transition-duration);
+}
+
+.mecha-blocks-widget-name:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+}
+
+.mecha-blocks-widget-type {
+    width: 64px;
+    flex: 0 0 64px;
+    overflow: hidden;
+    color: var(--text-secondary);
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.mecha-blocks-widget-delete {
+    order: 1;
+}
+
+.mecha-blocks-widget-delete:hover {
+    color: var(--danger-color);
+    background-color: rgba(239, 83, 80, 0.15);
+}
+
+.mecha-blocks-widget--disabled {
+    opacity: 0.62;
+    background-color: rgba(20, 24, 32, 0.48);
+    border-color: rgba(255, 255, 255, 0.1);
+    border-style: dashed;
+}
+
+.mecha-blocks-widget--disabled:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.mecha-blocks-widget--disabled .mecha-blocks-widget-name {
+    color: var(--text-secondary);
+    text-decoration: line-through;
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.mecha-blocks-widget--separator {
+    height: 28px;
+    margin: 4px 0;
+    justify-content: center;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 0;
+    background-color: transparent;
+}
+
+.mecha-blocks-widget--separator:hover {
+    background-color: transparent;
+}
+
+.mecha-blocks-widget--separator .mecha-blocks-widget-name {
+    justify-content: center;
+    flex: 1;
+    padding: 0 10px;
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 600;
+    text-align: center;
+}

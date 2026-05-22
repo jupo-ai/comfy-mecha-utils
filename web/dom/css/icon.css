@@ -1,0 +1,52 @@
+:root {
+    --icon-color: rgb(255 255 255 / 0.65);
+    --icon-color-hover: rgb(255 255 255 / 0.85);
+    --icon-bg-hover: rgb(255 255 255 / 0.1);
+    --icon-bg-active: rgb(255 255 255 / 0.15);
+}
+
+.mecha-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: inherit;
+    font-size: inherit;
+    line-height: 1;
+    pointer-events: none;
+}
+
+.mecha-icon-button {
+    --icon-size: 16px;
+    --button-padding: 4px;
+    --button-size: calc(var(--icon-size) + (var(--button-padding) * 2));
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--button-size);
+    height: var(--button-size);
+    margin: 0;
+    padding: 0;
+    border: none;
+    border-radius: 5px;
+    background: transparent;
+    color: var(--icon-color);
+    cursor: pointer;
+    font-size: var(--icon-size);
+    transition: background-color 0.1s, color 0.1s;
+}
+
+.mecha-icon-button:hover {
+    color: var(--icon-color-hover);
+    background-color: var(--icon-bg-hover);
+}
+
+.mecha-icon-button:active {
+    background-color: var(--icon-bg-active);
+}
+
+.mecha-icon-button:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+    pointer-events: none;
+}
