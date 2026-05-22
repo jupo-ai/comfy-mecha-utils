@@ -78,20 +78,6 @@ Diffusion Model と同じく、対象フォルダを `text_encoders` に限定�
 - `model_config`: `auto` または sd-mecha のbase model config
 - `merge_space`: 通常は `default`
 
-## Example Workflows
-
-### Checkpoint同士をブロック別にマージする
-
-```text
-Model A -> WeightedSum model_a
-Model B -> WeightedSum model_b
-Mecha Utils Blocks -> WeightedSum alpha
-
-WeightedSum -> Merger
-```
-
-`Mecha Utils Blocks` の各スライダーが `WeightedSum` の `alpha` として使われます。
-s
 
 ## Anima model_config
 
